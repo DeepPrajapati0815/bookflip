@@ -1,0 +1,20 @@
+<%- include("./header.ejs") %>
+
+    <nav class="navbar">
+        <div class="brand-name">
+            <a href="/">BookFlip</a>
+        </div>
+
+        <div class="nav-menu">
+            <form action="/logout">
+                <button type="submit" class="btn">Logout</button>
+            </form>
+            <div class="nav-icons">
+                <a href="/products"><i class="fa-solid fa-store"></i></a>
+                <a href="/cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                <a href="/orders"><i class="fa-solid fa-bag-shopping"></i></a>
+            </div>
+        </div>
+    </nav>

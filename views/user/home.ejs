@@ -1,0 +1,61 @@
+<%- include("../partials/navbar.ejs") %>
+    <div class="home-slider">
+        <img src="../../images/homebg.jpg" alt="">
+    </div>
+    <div id="categories">
+        <div class="categories-heading">
+            <h1>Categories</h1>
+        </div>
+        <div class="categories-container">
+            <div class="categories-box">
+                <div>
+                    <h1><a href="/products/fiction"> Fiction</a></h1>
+                </div>
+                <div>
+                    <h1><a href="/products/thriller"> Thriller</a></h1>
+                </div>
+                <div>
+                    <h1><a href="/products/tech"> Tech</a></h1>
+                </div>
+                <div>
+                    <h1><a href="/products/philosophy"> Philosophy</a></h1>
+                </div>
+                <div>
+                    <h1><a href="/products/romance"> Romance</a></h1>
+                </div>
+
+                <div>
+                    <h1><a href="/products/kids">kids</a></h1>
+                </div>
+            </div>
+        </div>
+        <button class="explore-btn"><a href="/products">Explore All</a></button>
+    </div>
+
+    <div id="new-arrivals">
+        <div class="arrivals-heading">
+            New Arrivals
+        </div>
+        <div class="product-items">
+            <% for(let i=0;i<5;i++){ %>
+                <div class="item-box">
+                    <a href="/product/<%= products[i]?.product_id  %> ">
+                        <img src="<%=products[i].imageUrl %>" alt="">
+                    </a>
+                    <div class="item-details">
+                        <h4>
+                            <%=products[i]?.title %>
+                        </h4>
+                        <h5>-<%=products[i]?.author %>
+                        </h5>
+                        <div>
+                            <span>Rs. <%=products[i]?.price %></span>
+                            <i class="fa-solid fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+    </div>
+
+    <%- include("../partials/footer.ejs") %>

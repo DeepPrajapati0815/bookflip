@@ -1,0 +1,82 @@
+<%- include("../partials/navbar.ejs") %>
+    <div class="checkout-container" style="width: 50%; margin:auto;">
+        <div>
+            <p><strong>Total :</strong></p>
+            <p><strong> ₹ <%=total %> </strong></p>
+        </div>
+
+        <textarea id="textarea" style="visibility: hidden;" name="obj"><%= JSON.stringify(object)  %></textarea>
+
+        <button id="pay-button">
+            Pay</button>
+        </form>
+
+
+    </div>
+    <script src=" https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+    <script>
+
+        const data = JSON.parse(document.getElementById("textarea").value);
+
+        var options = {
+            "key": "<%= process.env.PAY_KEY%>",
+            "amount": "<%=total * 100%>",
+            "currency": "INR",
+            "name": "BookFlip shop",
+            "description": "Pay & Checkout your order",
+            "image": ``,
+            "order_id": "<%=obj.order_id%>",
+            "handler": async function (response) {
+                try {
+
+                    const res = await fetch("/ordercomplete",
+                        {
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            method: "POST",
+                            body: JSON.stringify({ response, data })
+                        })
+                    console.log(res);
+                } catch (err) {
+                    console.log(err)
+                }
+
+            },
+            "prefill": {
+                //Here we are prefilling random contact
+                "contact": "<%= user.phone%>",
+                //name and email id, so while checkout
+                "name": "<%= user.fname%> " + "<%= user.lname%> ",
+                "email": "<%= user.email%>",
+            },
+            "notes": {
+                "description": "Best Course for SDE placements",
+                "language": `Available in 4 major Languages JAVA, 
+                     C/ C++, Python, Javascript`,
+                "access": "This course have Lifetime Access"
+            },
+            "theme": {
+                "color": "#2300a3"
+            }
+        };
+        var razorpayObject = new Razorpay(options);
+
+
+        razorpayObject.on('payment.failed', function (response) {
+            console.log(response);
+            alert("This step of Payment Failed");
+        });
+
+        document.getElementById('pay-button').onclick = function (e) {
+            console.log("clicked")
+            razorpayObject.open();
+            e.preventDefault();
+        }
+    </script>
+
+
+    <%- include("../partials/footer.ejs") %>

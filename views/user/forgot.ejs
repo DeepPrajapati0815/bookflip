@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>forgot password</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'>
+    <link rel="stylesheet" href="../../css/login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <!-- Form-->
+    <div class="form">
+        <div class="form-toggle"></div>
+        <div class="form-panel one">
+            <div class="form-header">
+                <h1>Request for forgot password</h1>
+            </div>
+            <div class="alert alert-<%= color %> " role="alert">
+                <%=msg %>
+            </div>
+            <div class="form-content">
+                <form action="/forgot-password" method="post">
+                    <div class="form-group">
+                        <label for="username">email</label>
+                        <input type="email" id="username" name="email" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Forgot Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- partial -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src='https://codepen.io/andytran/pen/vLmRVp.js'></script>
+        <script src="../../js/login.js"></script>
+</body>
+
+</html>

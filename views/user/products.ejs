@@ -1,0 +1,32 @@
+<%- include("../partials/navbar.ejs") %>
+
+
+
+    <div id="new-arrivals">
+        <div class="arrivals-heading">
+            Latest Trending Arrivals
+        </div>
+        <div class="product-items">
+            <% for(let i=0;i<products.length;i++){ %>
+                <div class="item-box">
+                    <a href="/product/<%= products[i].product_id  %> ">
+                        <img src=<%=products[i].imageUrl %> alt="">
+                    </a>
+                    <div class="item-details">
+                        <h4>
+                            <%=products[i].title %>
+                        </h4>
+                        <h5>-<%=products[i].author %>
+                        </h5>
+                        <div>
+                            <span>Rs. <%=products[i].price %></span>
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+    </div>
+
+
+    <%- include("../partials/footer.ejs") %>

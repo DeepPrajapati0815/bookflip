@@ -1,0 +1,76 @@
+<%- include("../partials/header.ejs") %>
+    <%- include("../partials/adminNav.ejs") %>
+        <div class="admin-home">
+            <div>
+                <h1>Edit Product</h1>
+            </div>
+            <div class="form-container">
+                <form method="post" action="/admin/edit" enctype="multipart/form-data">
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="form6Example1">Book title</label>
+
+                                <input type="text" required value="<%=product.title%>" name="title" id="form6Example1"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="form6Example2">Author</label>
+
+                                <input type="text" required value="<%=product.author%>" name="author" id="form6Example2"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form6Example3">Category</label>
+
+                        <input type="text" required value="<%= product.categories %>" name="category" id="form6Example3"
+                            class="form-control" />
+                    </div>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form6Example5">Image</label>
+
+                        <input type="file" name="file" id="form6Example5" class="form-control" />
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form6Example5">Price</label>
+
+                        <input type="text" value="<%= product.price %>" name="price" id="form6Example5"
+                            class="form-control" required />
+                    </div>
+
+                    <!-- Number input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form6Example6">Total Quantity</label>
+
+                        <input type="number" value="<%= product.total_quantity %>" name="totalQuantity"
+                            id="form6Example6" class="form-control" required />
+                    </div>
+
+                    <!-- Message input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form6Example7">Description</label>
+                        <textarea class="form-control" value="<%= product.description %>" name="description"
+                            id="form6Example7" required rows="4"><%= product.description %></textarea>
+                    </div>
+                    <% console.log(product.product_id) %>
+                        <!-- Submit button -->
+                        <button type="submit" name="id" value=<%=product.product_id%> style=" background-color:
+                            #bd5d78;
+                            border:none;
+                            outline: none;" class="btn btn-primary btn-block mb-4">Edit
+                            Product</button>
+                </form>
+            </div>
+        </div>
+
+        <%- include("../partials/footer.ejs") %>

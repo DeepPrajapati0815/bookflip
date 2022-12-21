@@ -1,0 +1,86 @@
+<%- include("../partials/header.ejs") %>
+    <%- include("../partials/adminNav.ejs") %>
+
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center mb-4">
+                        <h2 class="heading-section">All Listed Products</h2>
+                    </div>
+                </div>
+
+
+                <div class="alert alert-<%= color %> " role="alert">
+                    <%=msg %>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead class="thead-primary">
+                                    <tr>
+                                        <th>&nbsp;</th>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Total Quantity</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(let i=0;i<products.length;i++){ %>
+
+
+
+                                        <tr class="alert" role="alert">
+
+                                            <td>
+                                                <div class="img" style="background-image: url(images/product-2.png);">
+                                                    <img height="100px" width="100px"
+                                                        src="<%= products[i].imageUrl  %> " alt="">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="email">
+                                                    <span>
+                                                        <%= products[i].title %>
+                                                    </span>
+                                                    <span>- <%= products[i].author %> </span>
+                                                </div>
+                                            </td>
+                                            <td>Rs. <%= products[i].price %>
+                                            </td>
+                                            <td class="quantity">
+                                                <%= products[i].total_quantity %>
+                                            </td>
+                                            <td>
+                                                <form action="/admin/editproduct" method="post">
+                                                    <button type="submit" name="product_id"
+                                                        value=<%=products[i].product_id %> class="close"
+                                                        data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true"><i class="fa fa-edit"></i></span>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="/admin/deleteproduct" method="post">
+                                                    <button type="submit" name="product_id" class="close"
+                                                        value=<%=products[i].product_id %> data-dismiss="alert"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true"><i class="fa fa-trash"></i></span>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <%- include("../partials/footer.ejs") %>

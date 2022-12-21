@@ -1,0 +1,89 @@
+<%- include("../partials/navbar.ejs") %>
+
+    <div class="container">
+        <h1>
+            <%= cartItems.length %> items in Cart
+        </h1>
+        <div class="main-cart-container">
+            <div class="cart-container">
+                <% for(let i=0;i<cartItems.length;i++){ %>
+                    <div class="cart-items-box">
+                        <div class="cart-img">
+                            <img src=<%=cartItems[i].imageUrl %> alt="">
+                        </div>
+                        <div class="cart-details">
+                            <h5>
+                                <%=cartItems[i].title %>
+                            </h5>
+                            <p>By -<%=cartItems[i].author %>
+                            </p>
+                            <p class="cart-price">Rs. <%=cartItems[i].price %> x <%= cartItems[i].quantity %>
+                            </p>
+                            <form action="/removecart" method="post">
+                                <button id="removebtn" type="submit" class="remove-cart-btn" name="product_id"
+                                    value="<%= cartItems[i].product_id  %> ">Remove from Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                    <% } %>
+
+            </div>
+
+            <% let sum=0; %>
+
+                <% if(cartItems.length> 0){ %>
+                    <div class="checkout-container">
+                        <h1>Checkout</h1>
+                        <hr>
+
+                        <% for(let i=0;i<cartItems.length;i++){ %>
+                            <% sum+=cartItems[i].price * cartItems[i].quantity %>
+                                <div class="checkout-heading">
+                                    <p class="checkout-title"><span>
+                                            <%= cartItems[i].title %>
+                                        </span></p>
+                                    <p>X <%= cartItems[i].quantity %>
+                                    </p>
+                                    <p>
+                                        ₹ <%= cartItems[i].price * cartItems[i].quantity%>
+                                    </p>
+                                </div>
+                                <hr style="width: 100%; border-style: dashed;">
+                                <% } %>
+                                    <div>
+                                        <p><strong>Discount:</strong></p>
+                                        <p>₹ 0</p>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <p><strong>Delivery Charges:</strong></p>
+                                        <p>₹ 0</p>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <p><strong>Total Charges:</strong></p>
+                                        <p><strong> ₹ <%=sum %> </strong></p>
+                                    </div>
+                                    <form action="/orderplace" method="post">
+                                        <h4><b>Payment Options</b></h4>
+                                        <input type="radio" value="cod" checked="checked" name="paymentoption"> Cash On
+                                        Delivery
+                                        <br>
+                                        <input type="radio" value="online" required name="paymentoption"> Online Payment
+                                        <br>
+                                        <br>
+                                        <button id="pay-button" type="submit" name="cart"
+                                            value="<%=JSON.stringify(cartItems)%>">
+                                            Place
+                                            Order ₹ <%=sum %></button>
+                                    </form>
+                    </div>
+                    <% } %>
+
+        </div>
+
+    </div>
+
+
+
+    <%- include("../partials/footer.ejs") %>

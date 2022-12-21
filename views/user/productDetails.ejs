@@ -1,0 +1,47 @@
+<%- include("../partials/navbar.ejs") %>
+    <div class="details-container">
+        <div class="img-container">
+            <img src=<%=product.imageUrl %>>
+        </div>
+        <div class="details">
+            <h1>
+                <%=product.title %>
+            </h1>
+            <hr>
+            <form action="/addtocart" method="post" class="wishlist-form-btn">
+                <div class="description">
+                    <p><strong>Author:&nbsp;</strong>
+                        <%=product.author %>
+                    </p>
+                    <p><strong>Description:&nbsp;</strong>
+                        <%=product.description %>
+                    </p>
+                    <p><strong>Rating: &nbsp;</strong>
+                        <%=product.rating %>
+                    </p>
+                    <p><strong>Quantity:&nbsp;</strong>
+                        <input class="cart-quantity" type="number" value="1" min="1" max=<%=product.total_quantity %>
+                        name="product_quantity">
+                    </p>
+
+                    <p><strong>Price:</strong>Rs. <%=product.price %>
+                    </p>
+                </div>
+                <div class="details-btn">
+
+                    <button type="submit" class="cart-btn" name="product_id" value="<%=product.product_id %>">Add to
+                        Cart</a></button>
+            </form>
+        </div>
+        </form>
+    </div>
+    </div>
+    <%- include("../partials/footer.ejs") %>
+
+
+        <script>
+            function submit() {
+                let form = document.getElementById("quantityform");
+                form.submit();
+            }
+        </script>

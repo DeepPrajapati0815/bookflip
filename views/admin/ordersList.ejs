@@ -1,0 +1,98 @@
+<%- include("../partials/header.ejs") %>
+    <%- include("../partials/adminNav.ejs") %>
+
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center mb-4">
+                        <h2 class="heading-section">All Orders</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead class="thead-primary">
+                                    <tr>
+                                        <th>OrderNo</th>
+                                        <th>User Name</th>
+                                        <th>Address</th>
+                                        <th>Phone Number</th>
+                                        <th>Products</th>
+                                        <th>Quantity</th>
+                                        <th>Sub Total</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    <% orders.map((order)=>{%>
+
+                                        <tr class="alert" role="alert">
+
+                                            <td>
+                                                #<%=order.order_no %>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span>
+                                                        <%= order.fname + " " + order.lname%>
+                                                    </span>
+                                                    <span> </span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <%= order.address %>
+                                            </td>
+                                            <td>
+
+                                                <%=order.phone %>
+                                            </td>
+                                            <td>
+                                                <% const products=JSON.parse(order.product_id) %>
+
+                                                    <% const quantity=JSON.parse(order.quantity) %>
+                                                        <% for(let i=0;i<products.length;i++) {%>
+                                                            <p>
+                                                                <%= products[i].title %>
+                                                            </p>
+                                                            <hr>
+                                                            <% } %>
+                                            </td>
+
+                                            <td>
+                                                <% for(let i=0;i<products.length;i++) {%>
+                                                    <p>
+                                                        <%= quantity[i] %>
+                                                    </p>
+                                                    <hr>
+                                                    <% } %>
+                                            </td>
+                                            <td>
+                                                <% const subTotal=JSON.parse(order.total) %>
+                                                    <% let total=0; %>
+                                                        <% for(let i=0;i<subTotal.length;i++) {%>
+                                                            <% total +=subTotal[i] %>
+                                                                <p>
+                                                                    ₹<%= subTotal[i] %>
+                                                                </p>
+                                                                <hr>
+                                                                <% } %>
+                                            </td>
+                                            <td>
+                                                ₹<%= total %>
+                                            </td>
+                                        </tr>
+                                        <%}) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <%- include("../partials/footer.ejs") %>

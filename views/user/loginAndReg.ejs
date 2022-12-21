@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'>
+    <link rel="stylesheet" href="../../css/login.css">
+
+    <link rel="icon" type="image/x-icon" href="../../images/icons8-bookstore-64.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <!-- partial:index.partial.html -->
+    <!-- Form-->
+    <div class="form">
+        <div class="form-toggle"></div>
+        <div class="form-panel one">
+            <div class="form-header">
+                <h1>User Login </h1>
+            </div>
+            <div class="alert alert-<%= color %> " role="alert">
+                <%=msg %>
+            </div>
+            <div class="form-content">
+                <form action="/login" method="post">
+                    <div class="form-group">
+                        <label for="username">email</label>
+                        <input type="email" id="username" name="email" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required="required" />
+                    </div>
+                    <div class="form-group">
+                        </label><a class="form-recovery" href="/forgot-password">Forgot Password?</a>
+                    </div>
+                    <div class="form-group">
+                        <button>Log In</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="form-panel two ">
+            <div class="form-header">
+                <h1>User Register Account</h1>
+            </div>
+            <div class="alert alert-<%= clr %> " role="alert">
+                <%=regmsg %>
+            </div>
+            <div class="form-content">
+                <form action="/register" method="post">
+                    <div class="form-group">
+                        <label for="username">first Name</label>
+                        <input type="text" id="username" name="fname" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Last Name</label>
+                        <input type="text" id="username" name="lname" required="required" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Mobile Number</label>
+                        <input type="text" minlength="10" maxlength="10" id="email" name="phone" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Address</label>
+                        <textarea name="address" id="address" cols="90" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <label for="cpassword">Confirm Password</label>
+                        <input type="password" id="cpassword" name="confirmpassword" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="register">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://codepen.io/andytran/pen/vLmRVp.js'></script>
+    <script src="../../js/login.js"></script>
+</body>
+
+</html>
