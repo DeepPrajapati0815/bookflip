@@ -61,7 +61,7 @@ router.post("/admin/addproduct", authenticateAdmin, async (req, res) => {
 router.get("/admin/listproducts", authenticateAdmin, async (req, res) => {
   const products = await listAllProducts();
   // console.log(products);
-  res.render("admin/productslist", { products: products, msg: "", color: "" });
+  res.render("admin/productsList", { products: products, msg: "", color: "" });
 });
 
 router.post("/admin/editproduct", authenticateAdmin, async (req, res) => {

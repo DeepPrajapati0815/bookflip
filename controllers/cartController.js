@@ -17,12 +17,14 @@ const fetchCartItems = async (req, res) => {
 const addCart = async (req, res) => {
   const id = req.body.product_id.trim();
   const quantity = Number(req.body.product_quantity.trim());
-  const cartItem = await checkCart(id);
   const user_id = req.user.user_id.trim();
-  // console.log(cartItem);
+  const cartItem = await checkCart(user_id, id);
+  console.log(cartItem);
   if (!cartItem[0]) {
+    console.log("if");
     addToCart(user_id, id, quantity);
   } else {
+    console.log("else");
     updateCart(user_id, id, quantity);
   }
   res.redirect("/product/" + id);

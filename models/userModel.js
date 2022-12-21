@@ -113,12 +113,15 @@ const addToCart = (user_id, product_id, quantity) => {
     `insert into cart (cart_id,user_id,product_id,quantity) values (uuid(),"${user_id}","${product_id}","${quantity}")`,
     (err) => {
       if (err) throw err;
-      console.log("User registered Successfully");
+      console.log("product added to cart Successfully");
     }
   );
 };
 
 const checkCart = (user_id, product_id) => {
+  console.log(
+    `select * from cart where product_id = "${product_id}" and user_id = "${user_id};`
+  );
   return new Promise(function (resolve, reject) {
     connection.query(
       `select * from cart where product_id = "${product_id}" and user_id = "${user_id}";`,
@@ -135,7 +138,7 @@ const checkCart = (user_id, product_id) => {
 
 const updateCart = (user_id, product_id, quantity) => {
   connection.query(
-    `update cart set quantity =  quantity + ${quantity} where product_id = "${product_id} and user_id = "${user_id}"";`,
+    `update cart set quantity =  quantity + ${quantity} where product_id = "${product_id}" and user_id = "${user_id}";`,
     (err) => {
       if (err) throw err;
       console.log("User registered Successfully");
